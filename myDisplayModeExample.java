@@ -5,6 +5,8 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
+import javagames.render.DisplayModeExample.DisplayModeWrapper;
+
 public class myDisplayModeExample extends JFrame { 
 	
 	
@@ -62,8 +64,9 @@ public class myDisplayModeExample extends JFrame {
 			}
 		}
 	
+		 
 		
-		return (DisplayModeWrapper[]) list.toArray();
+	 return list.toArray(new DisplayModeWrapper [0]);
 			 	 
 	 }
 	  
@@ -82,7 +85,7 @@ public class myDisplayModeExample extends JFrame {
     	 open.addActionListener(opener);
     	 panel.add(open);
     	 
-    	 JButton exit = new JButton();
+    	 JButton exit = new JButton("Exit Full Screen Mode");
     	 ActionListener exiter = (e)->{onExitFullScreen();};
     	 exit.addActionListener(exiter);
     	 panel.add(exit);
@@ -128,8 +131,9 @@ public class myDisplayModeExample extends JFrame {
 		 protected void onEnterFullScreen() { 
 			 
 			 if (graphicsDevice.isFullScreenSupported()) {
-				 graphicsDevice.setDisplayMode(getSelectedMode());
 				 graphicsDevice.setFullScreenWindow(this);
+				 graphicsDevice.setDisplayMode(getSelectedMode());
+				
 			 }
 			 
 			
@@ -144,7 +148,7 @@ public class myDisplayModeExample extends JFrame {
 		 
 		 public static void main( String[] args ) { 
 			 
-			 final DisplayModeExample app = new DisplayModeExample();
+			 final myDisplayModeExample app = new myDisplayModeExample();
 			 
 		     SwingUtilities.invokeLater( new Runnable() { 
 		    	         public void run(){app.createAndShowGUI();
